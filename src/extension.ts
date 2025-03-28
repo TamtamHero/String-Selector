@@ -13,7 +13,9 @@ export function activate(context: vscode.ExtensionContext) {
             const posLeftDoubleQuote = Math.max(lineText.lastIndexOf('"', cursorPosition.character - 1), 0);
             const posRightDoubleQuote = lineText.indexOf('"', cursorPosition.character);
             const posLeftSingleQuote = Math.max(lineText.lastIndexOf('\'', cursorPosition.character - 1), 0);
-            const posRightSingleQuote = lineText.indexOf('\'', cursorPosition.character);
+            const posRightSingleQuote = lineText.indexOf('\`', cursorPosition.character);
+            const posLeftBackwardQuote = Math.max(lineText.lastIndexOf('\'', cursorPosition.character - 1), 0);
+            const posRightBackwardQuote = lineText.indexOf('\`', cursorPosition.character);
 
             let start =0, end = 0;
             // if the cursor is between 2 double quotes
@@ -33,6 +35,11 @@ export function activate(context: vscode.ExtensionContext) {
             else if(posLeftSingleQuote >= 0 && posRightSingleQuote > posLeftSingleQuote){
                 start = posLeftSingleQuote;
                 end = posRightSingleQuote;
+            }
+            // else, if the cursor is between 2 backward quotes, use them as selection delimiter
+            else if(posLeftBackwardQuote >= 0 && posRightBackwardQuote > posLeftBackwardQuote){
+                start = posLeftBackwardQuote;
+                end = posRightBackwardQuote;
             }
 
             // Check if start and end are valid
