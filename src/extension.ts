@@ -16,7 +16,6 @@ export function activate(context: vscode.ExtensionContext) {
             const posRightSingleQuote = lineText.indexOf('\'', cursorPosition.character);
 
             let start =0, end = 0;
-
             // if the cursor is between 2 double quotes
             if (posLeftDoubleQuote >= 0 && posRightDoubleQuote > posLeftDoubleQuote) {
                 // if the cursor is also between 2 single quotes which are both closer to cursor, use them a selection delimiter
@@ -37,7 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
             }
 
             // Check if start and end are valid
-            if (start !== 0 && end !== 0) {
+            if (start !== 0 || end !== 0) {
                 const startPosition = new vscode.Position(cursorPosition.line, start + 1);
                 const endPosition = new vscode.Position(cursorPosition.line, end);
                 const selection = new vscode.Selection(startPosition, endPosition);
