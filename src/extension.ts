@@ -13,8 +13,8 @@ export function activate(context: vscode.ExtensionContext) {
             const posLeftDoubleQuote = Math.max(lineText.lastIndexOf('"', cursorPosition.character - 1), 0);
             const posRightDoubleQuote = lineText.indexOf('"', cursorPosition.character);
             const posLeftSingleQuote = Math.max(lineText.lastIndexOf('\'', cursorPosition.character - 1), 0);
-            const posRightSingleQuote = lineText.indexOf('\`', cursorPosition.character);
-            const posLeftBackwardQuote = Math.max(lineText.lastIndexOf('\'', cursorPosition.character - 1), 0);
+            const posRightSingleQuote = lineText.indexOf('\'', cursorPosition.character);
+            const posLeftBackwardQuote = Math.max(lineText.lastIndexOf('\`', cursorPosition.character - 1), 0);
             const posRightBackwardQuote = lineText.indexOf('\`', cursorPosition.character);
 
             let start =0, end = 0;
